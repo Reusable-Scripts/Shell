@@ -45,3 +45,4 @@ exit
 fi
 # to change the port number
 # sed -i 's/port="8080"/port="8880"/' $CATALINA_HOME/Config/server.xml
+#sed -i 's/port="8080"/port="8880"/g' $CATALINA_HOME/Config/server.xml
