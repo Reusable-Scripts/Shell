@@ -43,3 +43,5 @@ else
 echo "Installer tarballs not found in /home/rdama. Please make sure they exist there. Exiting installation process now."
 exit
 fi
+# to change the port number
+# sed -i 's/port="8080"/port="8880"/' $CATALINA_HOME/Config/server.xml
