@@ -1,5 +1,9 @@
 #Apache Tomcat Installer Script
 #Checking if installer tarballs are present or not. If they are not found, script will print error message & quit.
+#wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.rpm
+#wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.tar.gz
+#curl -v -j -k -L -H "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u112-b15/jdk-8u112-linux-x64.rpm > jdk-8u112-linux-x64.rpm
+
 if [ -f /home/rdama/jdk-8u25-linux-x64.tar.gz ] && [ -f /home/rdama/apache-tomcat-8.0.15.tar.gz ]
 then
 echo "Extracting Java installer tarball.......";
@@ -34,6 +38,7 @@ echo ""
 java -cp $CATALINA_HOME/lib/catalina.jar org.apache.catalina.util.ServerInfo;
 echo ""
 echo "Starting Tomcat server"
+sed -i 's/port="8080"/port="8880"/g' $CATALINA_HOME/Conf/server.xml
 cd $CATALINA_HOME/bin
 ./startup.sh
 echo "Removing tarballs from PWD.";
@@ -45,4 +50,3 @@ exit
 fi
 # to change the port number
 # sed -i 's/port="8080"/port="8880"/' $CATALINA_HOME/Conf/server.xml
-#sed -i 's/port="8080"/port="8880"/g' $CATALINA_HOME/Conf/server.xml
