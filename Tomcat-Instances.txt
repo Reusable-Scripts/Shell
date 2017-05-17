@@ -1,0 +1,134 @@
+If you are a developer then you will find yourself in a situation where you have to run multiple instances of Tomcat server on a single machine. The information available on the internet may not be precise and hence I have listed down the step-by-step guide to achieve it.
+
+The configuration used for the illustration is Linux CentOS-6.X server.
+
+Step 1:
+Download Tomcat from http://tomcat.apache.org/download-60.cgi
+Step 2:
+Extract it into two different folders, let’s say /opt/tomcat1 and /opt/tomcat2
+Step 3:
+Keep tomcat1 instance as is and change following things in tomcat2 instance
+Edit /opt/tomcat2/conf/server.xml and change port number
+<server port="8105" shutdown="SHUTDOWN">
+
+    .....
+
+    <Connector port="8181" protocol="HTTP/1.1"
+
+        connectionTimeout="20000"
+
+        redirectPort="8443" />
+
+    .....
+
+    <Connector port="8109" protocol="AJP/1.3" redirectPort="8443" />
+
+Step 4:
+Create following two scripts to run Tomcat as a service
+Create /etc/init.d/tomcat1 with following instructions
+
+
+#!/bin/bash
+
+# description: Tomcat Start Stop Restart
+
+# processname: tomcat
+
+# chkconfig: 234 20 80
+
+JAVA_HOME=/usr/lib/jvm/jre-openjdk
+
+export JAVA_HOME
+
+PATH=$JAVA_HOME/bin:$PATH
+
+export PATH
+
+CATALINA_HOME=/opt/tomcat1
+case $1 in
+
+start)
+
+sh $CATALINA_HOME/bin/startup.sh
+
+;;
+
+stop)
+
+sh $CATALINA_HOME/bin/shutdown.sh
+
+;;
+
+restart)
+
+sh $CATALINA_HOME/bin/shutdown.sh
+
+sh $CATALINA_HOME/bin/startup.sh
+
+;;
+
+esac
+
+exit 0
+
+
+Create /etc/init.d/tomcat2 with following instructions
+
+
+#!/bin/bash
+
+# description: Tomcat Start Stop Restart
+
+# processname: tomcat
+
+# chkconfig: 234 20 80
+
+JAVA_HOME=/usr/lib/jvm/jre-openjdk
+
+export JAVA_HOME
+
+PATH=$JAVA_HOME/bin:$PATH
+
+export PATH
+
+CATALINA_HOME=/opt/tomcat2
+case $1 in
+
+start)
+
+sh $CATALINA_HOME/bin/startup.sh
+
+;;
+
+stop)
+
+sh $CATALINA_HOME/bin/shutdown.sh
+
+;;
+
+restart)
+
+sh $CATALINA_HOME/bin/shutdown.sh
+
+sh $CATALINA_HOME/bin/startup.sh
+
+;;
+
+esac
+
+exit 0
+
+
+Step 5:
+Start/Stop Tomcat service
+Service tomcat1 start/stop/restart
+
+Service tomcat2 start/stop/restart
+
+Step 6:
+Add Tomcat service in startup
+chkconfig tomcat1 on
+
+chkconfig tomcat2 on
+
+This will enable you to use two instances of Tomcat on a single machine.
