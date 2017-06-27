@@ -1,3 +1,5 @@
+#.\Packages\Putty\plink.exe -v -pw %Linux_PW% -P %PORT_NO% %Linux_User%@%Linux_Machine% sh %Target_Dir%/Scripts/tomcat.sh %Target_Dir%
+
 #!/bin/bash +X
 JAVA_VER=$(java -version 2>&1 | grep -i version | sed 's/.*version ".*\.\(.*\)\..*"/\1/; 1q')
 if [ -n "$(echo $JAVA_VER)" ]; then
