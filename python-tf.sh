@@ -6,6 +6,7 @@ cd Python-3.5.0
 ./configure
 sudo make install
 
+# installing pip
 python3.5 get-pip.py --prefix=/usr/local/
 
 #Installing Tensorflow1.1 from https://pypi.python.org/pypi/tensorflow/1.1.0
