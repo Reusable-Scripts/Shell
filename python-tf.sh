@@ -50,6 +50,11 @@ sed -i "s|export CUDA_HOME=.*|export CUDA_HOME=$CUDA_HOME|" /etc/environment
 else
 echo "export CUDA_HOME=/usr/local/cuda" >> /etc/environment
 fi
-
+if grep -q "alias python=.*" $HOME/.bashrc; then
+sed -i "s|export alias python=.*|export alias python=python3.5|" $HOME/.bashrc
+else
+echo "alias python=python3.5" >> $HOME/.bashrc
+fi
+source $HOME/.bashrc
 wget https://pypi.python.org/packages/cd/e4/b2a8bcd1fa689489050386ec70c5c547e4a75d06f2cc2b55f45463cd092c/tensorflow-1.1.0-cp36-cp36m-manylinux1_x86_64.whl#md5=1f761290358dfb7fe4ec73140f4d282a
 pip install ./tensorflow-1.1.0-cp36-cp36m-manylinux1_x86_64.whl
