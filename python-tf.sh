@@ -78,9 +78,16 @@ fi
 source $HOME/.bashrc
 wget https://pypi.python.org/packages/cd/e4/b2a8bcd1fa689489050386ec70c5c547e4a75d06f2cc2b55f45463cd092c/tensorflow-1.1.0-cp36-cp36m-manylinux1_x86_64.whl#md5=1f761290358dfb7fe4ec73140f4d282a
 python -m pip install --ignore-installed --upgrade ./tensorflow-1.1.0-cp36-cp36m-manylinux1_x86_64.whl
-
+if [ $? -eq 0 ]
+then
+echo "installing Tensorflow"
 <<-'EOF'
 python
 import tensorflow
 exit ()
 EOF
+ver=`python -c 'import tensorflow as tf; print(tf.__version__)'`
+echo Tensorflow $ver is installed
+else
+echo "Tensorflow installation failed"
+fi
