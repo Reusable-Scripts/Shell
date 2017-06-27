@@ -1,18 +1,25 @@
 #!/bin/bash -xe
 
-wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz
-tar -xvf Python-3.5.0.tgz
-cd Python-3.5.0
-./configure
-sudo make install
+#wget https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz
+#tar -xvf Python-3.5.0.tgz
+#cd Python-3.5.0
+#./configure
+#sudo make install
+
+wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz
+sudo tar xzf Python-3.6.0.tgz
+cd Python-3.6.0
+sudo ./configure
+sudo make altinstall
+python_ver=python3.6
 
 # installing pip
-python3.5 get-pip.py --prefix=/usr/local/
+python3.6 get-pip.py --prefix=/usr/local/
 
 if grep -q "alias python=.*" $HOME/.bashrc; then
-sed -i "s|export alias python=.*|export alias python=python3.5|" $HOME/.bashrc
+sed -i "s|export alias python=.*|export alias python=$python_ver|" $HOME/.bashrc
 else
-echo "alias python=python3.5" >> $HOME/.bashrc
+echo "alias python=$python_ver" >> $HOME/.bashrc
 fi
 source $HOME/.bashrc
 
@@ -64,9 +71,9 @@ else
 echo "export CUDA_HOME=/usr/local/cuda" >> /etc/environment
 fi
 if grep -q "alias python=.*" $HOME/.bashrc; then
-sed -i "s|export alias python=.*|export alias python=python3.5|" $HOME/.bashrc
+sed -i "s|export alias python=.*|export alias python=python3.6|" $HOME/.bashrc
 else
-echo "alias python=python3.5" >> $HOME/.bashrc
+echo "alias python=python3.6" >> $HOME/.bashrc
 fi
 source $HOME/.bashrc
 wget https://pypi.python.org/packages/cd/e4/b2a8bcd1fa689489050386ec70c5c547e4a75d06f2cc2b55f45463cd092c/tensorflow-1.1.0-cp36-cp36m-manylinux1_x86_64.whl#md5=1f761290358dfb7fe4ec73140f4d282a
