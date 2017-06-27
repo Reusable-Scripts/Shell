@@ -82,5 +82,5 @@ pip install --ignore-installed --upgrade ./tensorflow-1.1.0-cp36-cp36m-manylinux
 <<-'EOF'
 python
 import tensorflow
-
+exit ()
 EOF
