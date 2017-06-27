@@ -1,3 +1,5 @@
+#sh tensorflow.sh /tmp/       - here all packages are stored under /tmp/
+
 #!/bin/bash -xe
 
 mkdir -p /opt/smarts/python
