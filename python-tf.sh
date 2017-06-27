@@ -9,6 +9,20 @@ sudo make install
 # installing pip
 python3.5 get-pip.py --prefix=/usr/local/
 
+if grep -q "alias python=.*" $HOME/.bashrc; then
+sed -i "s|export alias python=.*|export alias python=python3.5|" $HOME/.bashrc
+else
+echo "alias python=python3.5" >> $HOME/.bashrc
+fi
+source $HOME/.bashrc
+
+pip install wheel
+pip install werkzeug
+pip install six
+pip install protobuf
+pip install numpy
+pip install mock
+
 #Installing Tensorflow1.1 from https://pypi.python.org/pypi/tensorflow/1.1.0
 #https://pythonprogramming.net/how-to-cuda-gpu-tensorflow-deep-learning-tutorial/
   # CUDA Toolkit 7.5 or greater from https://developer.nvidia.com/cuda-downloads
