@@ -12,7 +12,7 @@ send -- "\r"
 interact
 
 
-OR
+                                            OR
 
 
 cu=`whoami`
@@ -28,6 +28,11 @@ pwd
 ls -la
 EOF
 
+
+                                            OR
+
+
+sshpass -p $Linux_PW ssh $Linux_User@$Linux_Machine -p $PORT_NO source $HOME/.bashrc >> ./logs/$APP_NAME-$APP_VERSION.log 2>>&1
 
 
 
