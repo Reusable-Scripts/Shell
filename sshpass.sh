@@ -39,7 +39,8 @@ scp -vC -F /home/user/my_ssh_config ~/test.txt root@192.168.1.3:/some/path/test.
 scp -vC -F /home/user/id_rsa.pub ~/test.txt root@192.168.1.3:/some/path/test.txt
 
 
-
+openssl rsa -in /home/$cu/.ssh/id_rsa -outform pem > /home/$cu/.ssh/id_rsa.pem
+chmod 700 /home/$cu/.ssh/id_rsa.pem
 
 
 setting ssh authorized_keys seem to be simple but hides some traps I'm trying to figure
