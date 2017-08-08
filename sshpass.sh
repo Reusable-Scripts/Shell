@@ -37,6 +37,7 @@ sshpass -p $Linux_PW ssh $Linux_User@$Linux_Machine -p $PORT_NO source $HOME/.ba
 scp -vCq -i private_key.pem ~/test.txt root@192.168.1.3:/some/path/test.txt
 scp -vC -F /home/user/my_ssh_config ~/test.txt root@192.168.1.3:/some/path/test.txt
 scp -vC -F /home/user/id_rsa.pub ~/test.txt root@192.168.1.3:/some/path/test.txt
+scp -i /home/$cu/.ssh/id_rsa -P $PORT_NO -r ./Scripts/ $Linux_Machine:${Target_Dir}/
 
 
 openssl rsa -in /home/$cu/.ssh/id_rsa -outform pem > /home/$cu/.ssh/id_rsa.pem
