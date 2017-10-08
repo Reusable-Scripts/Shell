@@ -10,9 +10,9 @@ Change your server.xml so that it will use port numbers expanded from properties
 </Server>
 Here's how you can start in Linux (assuming your current directory is CATALINA_HOME):
 
-JAVA_OPTS="-Dport.shutdown=8005 -Dport.http=8080" bin/startup.sh
-In windows it should be smth like following:
-
+ JAVA_OPTS="-Dport.shutdown=8005 -Dport.http=8080" bin/startup.sh
+In windows it should be something like following: 
 set "JAVA_OPTS=-Dport.shutdown=8005 -Dport.http=8080"
 bin\startup.bat
+
 ==================================================================================
