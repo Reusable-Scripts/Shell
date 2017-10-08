@@ -20,9 +20,6 @@ export CATALINA_HOME=/opt/smarts/apache-tomcat
 #CATALINA_BASE is the location of the configuration files of this instance of Tomcat
 export CATALINA_BASE=/opt/smarts/apache-tomcat/Instances/$1-tomcat/$2
  
-#TOMCAT_USER is the default user of tomcat
-export TOMCAT_USER=tomcat
- 
 #TOMCAT_USAGE is the message if this script is called without any options
 TOMCAT_USAGE="Usage: $0 {\e[00;32mstart\e[00m|\e[00;31mstop\e[00m|\e[00;31mkill\e[00m|\e[00;32mstatus\e[00m|\e[00;31mrestart\e[00m}"
  
