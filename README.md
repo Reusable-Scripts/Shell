@@ -16,3 +16,11 @@ set "JAVA_OPTS=-Dport.shutdown=8005 -Dport.http=8080"
 bin\startup.bat
 
 ==================================================================================
+
+
+if net rpc has errors, run the below command on windows 
+
+net stop LanmanServer /y && net start LanmanServer
+
+==================================================================================
+
