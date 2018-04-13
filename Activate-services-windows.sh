@@ -10,7 +10,7 @@ URL='http://hostname:8083/sots'
 
 RC=`curl -s -o /dev/null -w "%{http_code}" $URL`
 version='1.0.6AB'
-config_file='/opt/smarts/svsu/tool_info.ini'
+config_file='/opt/svsu/tool_info.ini'
 #echo return code is: $RC
 
 get_activeversion(){
@@ -108,4 +108,4 @@ fi
 
 
 
-#curl -v --silent http://smarts-demo:8083/sots/version --stderr - |grep -i \"version\"\:
+#curl -v --silent http://hostname:8083/sots/version --stderr - |grep -i \"version\"\:
