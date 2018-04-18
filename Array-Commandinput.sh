@@ -30,8 +30,13 @@ run_net_rpc() {
   net rpc "$@" -I "$host" -U "$domain/$user%$pw"
 }
 
-readarray -t services < <(run_net_rpc service list | grep -i Rpc)
+#readarray -t services <<'run_net_rpc service list | grep -i Rpc'
+readarray -t services < <(run_net_rpc service list | grep -i sots)
+echo "select the service to activate:"
 select svc in "${services[@]}"; do
-  run_net_rpc activate service "$svc"
+echo "service selected is $svc"
+service_name=`echo $svc|awk '{print $1;}'`
+echo $service_name
+run_net_rpc service start "$service_name"
   break
 done
