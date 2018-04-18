@@ -6,6 +6,7 @@ user="rdama"
 pw="Passw0rd"
 
 
+<< comments
 get_installedversions(){
 array=( $(net rpc service list -I $host -U $domain/$user%$pw | grep -i SQL) )
 len=${#array[*]}
@@ -22,3 +23,15 @@ echo -n "Enter the service to be activated: "
 }
 get_installedversions
 echo selected service is ${array[$version]}
+
+comments
+
+run_net_rpc() {
+  net rpc "$@" -I "$host" -U "$domain/$user%$pw"
+}
+
+readarray -t services < <(run_net_rpc service list | grep -i Rpc)
+select svc in "${services[@]}"; do
+  run_net_rpc activate service "$svc"
+  break
+done
