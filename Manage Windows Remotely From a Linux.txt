@@ -1,0 +1,57 @@
+Manage Windows Remotely From a Linux Command Line Interface
+Many administrators must work in multiple operating systems, such as Windows, Linux, Solaris, Unix, etc, one of the most common among them being Windows.
+
+As I’ve often stated I prefer Linux, using Windows only when I must. However, from an administrative perspective it’s really helpful if while using Linux for various administrative tasks, one can streamline their work environment and engage in some common tasks such as starting or stopping Windows services at will from Linux.
+
+To get a list of all available services on a Windows PC or Server, type the following from your Linux command line:
+
+net rpc service list -I IPADDRESS -U USERNAME%PASSWORD
+
+If you have a complicated password that uses symbols (such as ! # @, etc) you will find that entering the password (even in “quotation marks”) will not work, you will have to leave the @PASSWORD blank, and just enter the USERNAME, you’ll then be prompted to enter the password manually. Also note, some services may have spaces in their name. If so, simply “enclose the service name in quotes” to start or stop that service.
+
+If on a domain . . .
+
+net rpc service list -I IPADDRESS -U "domainname\username"
+
+You will then be prompted for the password. Once you’ve authenticated, the list of services will scroll on your screen.
+
+To stop any service:
+
+net rpc service stop SERVICENAME -I IPADDRESS -U USERNAME%PASSWORD
+
+or if on a domain
+
+net rpc service stop SERVICENAME -I IPADDRESS -U "domainname\username"
+
+To start any service:
+
+net rpc service start SERVICENAME -I IPADDRESS -U USERNAME%PASSWORD
+
+or if on a domain
+
+net rpc service start SERVICENAME -I IPADDRESS -U "domainname\username"
+
+You can do more than stop or start services. This functionality stems from SAMBA on Linux. 
+You can add and remove users remotely, change user passwords, kill print jobs, show all users for a specified group, 
+list all groups, shutdown the server or PC, shutdown-and-restart the server or PC and much much more: 
+just type “man net” for more information, however, here are a few gems . . .
+
+To list all the shares on a PC or Server (example):
+
+net rap share -I 192.168.0.5 -U "mydomain\john"
+
+To list the Print Queue on a PC or Server (example):
+
+net rap printq -I 192.168.0.5 -U "mydomain\john"
+
+To get the name of the server you’re accessing (example):
+
+net rap server name -I 192.168.0.5 -U "mydomain\john"
+
+To list ALL the open SMB/CIFS sessions on the target computer (example):
+
+net rap session -I 192.168.0.5 -U "mydomain\john"
+
+To reboot the server or PC and force all apps to shutdown gracefully:
+
+net rpc shutdown -r -f -I 192.168.0.5 -U "mydomain\john"
